@@ -85,8 +85,10 @@ def ytdlp_json_to_excel_group_by_author(json_path, xslx_path):
         all_texts = ""
         all_likes = 0
         max_likes = 0
-        for comment in comments:
-            all_texts += comment["text"] + "\n----\n"
+        for i, comment in enumerate(comments):
+            all_texts += comment["text"]
+            if len(comments) > 1 and i < len(comments) - 1:
+                 all_texts += "\n----\n"
             all_likes += int(comment["like_count"])            
             if max_likes < int(comment["like_count"]):
                 max_likes = int(comment["like_count"])
